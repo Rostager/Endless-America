@@ -9,9 +9,10 @@ const config = {
         default: 'arcade',
         arcade: {
             debug: true
-        }
+        },
+    backgroundColor: '#000000'    
     },
-    scene: [Play]
+    scene: [Load, Play]
 }
 
 const game = new Phaser.Game(config)
