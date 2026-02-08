@@ -4,11 +4,18 @@ class Load extends Phaser.Scene{
     }
 
     preload(){
-
+        this.load.path = './assets/'
+        this.load.image('rocketMan','RocketMan.png')
     }
 
     create(){
-        
+
+
+
+
+        console.log("create done")
+        this.scene.start("playScene")
     }
+
 
 }

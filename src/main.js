@@ -8,6 +8,7 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
+            gravity: { y: 500 },
             debug: true
         },
     backgroundColor: '#000000'    
