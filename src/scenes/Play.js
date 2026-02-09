@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
         //Set Up Player
         this.player = new Player(this, 0, 0, 'rocketMan', 0)
         this.gun1 = new Gun (this, this.game.config.width -50, 300, 'rocketMan', 0)
+        this.piston1 = new Piston (this, 0, 0, 'rocketMan', 0)
         //Set Up Keys
         this.keys = this.input.keyboard.createCursorKeys()
     }
@@ -16,7 +17,11 @@ class Play extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(this.keys.up)){
             this.gun1.attack(this.player.y)
         }
-        
+
+        if(Phaser.Input.Keyboard.JustDown(this.keys.down)){
+            this.piston1.attack(this.player.x)
+        }
+
         this.playerFSM.step()
     }
 }
