@@ -32,7 +32,7 @@ class RunState extends State {
 
     execute(scene, player){
         const { left, right, up, down, space, shift } = scene.keys
-        console.log('execute-RunState')
+       // console.log('execute-RunState')
 
         //JUMP
         if(Phaser.Input.Keyboard.JustDown(space)){ 
@@ -65,9 +65,9 @@ class FlyState extends State {
 
     execute (scene, player, time, delta){
         const { left, right, up, down, space, shift } = scene.keys
-        console.log('execute-FlyState')
+       // console.log('execute-FlyState')
 
-        console.log(player.body.acceleration)
+        //console.log(player.body.acceleration)
         if(Phaser.Input.Keyboard.JustUp(space) && !player.doubleJumpReady){
             player.enableGlide = true
         }
