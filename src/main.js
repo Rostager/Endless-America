@@ -3,12 +3,12 @@
 const config = {
     parent: 'phaser-game',
     type: Phaser.WEBGL,
-    width: 1024,
-    height: 512,
+    width: 256*5,
+    height: 256*3,
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 500 },
+            gravity: { y: 980 },
             debug: true
         },
     backgroundColor: '#000000'    
