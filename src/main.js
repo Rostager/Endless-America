@@ -13,7 +13,7 @@ const config = {
         },
     backgroundColor: '#000000'    
     },
-    scene: [Load, Play]
+    scene: [Load, Menu, Play, GameOver]
 }
 
 const game = new Phaser.Game(config)

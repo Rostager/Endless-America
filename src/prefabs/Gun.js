@@ -42,7 +42,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
             console.log("Player hit by gun!")
-            //player.die()
+            this.scene.player.death()
         })
         
         

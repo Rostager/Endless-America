@@ -19,9 +19,13 @@ class Play extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(this.keys.down)){
-            this.piston1.attack(this.player.x)
+            console.log(this.piston1.attack(this.player.x))
         }
 
+        if(this.playerFSM.state === 'death'){
+            this.scene.start("gameOverScene")
+        }
+        
         this.playerFSM.step()
     }
 }

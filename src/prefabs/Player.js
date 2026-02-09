@@ -19,8 +19,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.playerFSM = new StateMachine('fly', {
             run: new RunState(),
             fly: new FlyState(),
+            death: new DeathState(),
         }, [scene, this])    
-    }   
+    } 
+    
+    death(){
+        this.scene.playerFSM.transition('death')
+    }
 }
 
 class RunState extends State {
@@ -109,4 +114,12 @@ class FlyState extends State {
         }
         
     }
+}
+
+class DeathState extends State {
+    enter(scene, player){
+        console.log("enter-DeathState")
+       // player.scene.start("gameOverScene")
+    }
+
 }

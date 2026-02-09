@@ -14,7 +14,7 @@ class Load extends Phaser.Scene{
 
 
         console.log("create done")
-        this.scene.start("playScene")
+        this.scene.start("menuScene")
     }
 
 
