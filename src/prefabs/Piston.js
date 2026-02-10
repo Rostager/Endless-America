@@ -34,7 +34,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
                 console.log("Fire Complete")
                 this.shotTelegraph.destroy()
                 this.body.setEnable(true)
-                this.scene.time.delayedCall(100, () => {
+                this.scene.time.delayedCall(10, () => {
                     this.body.enable = false
                     console.log("body disabled")
                 })
