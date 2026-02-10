@@ -2,19 +2,23 @@ class Play extends Phaser.Scene {
     constructor() {
         super('playScene')
     }
-
-    create(){
-        //Create an array of guns 
+    preload(){
         this.guns = []
         this.pistons = []
         this.currentGunIndex = 0
         this.readyToFire = true
-        this.fireDelay = 3000; // Initial delay of 3 seconds
-
+        this.fireDelay = 3000;
         for(let i = 0; i < 5; i++){
-            this.guns.push(new Gun(this, this.game.config.width -50, 300, 'rocketMan', 0))
+            this.guns.push(new Gun(this, this.game.config.width -50, 300, 'gunShot', 0))
+            this.guns[i].setVisible(false)
             this.pistons.push(new Piston(this, 0, 0, 'rocketMan', 0))
         }
+    }
+    create(){
+        //Create an array of guns 
+        // Initial delay of 3 seconds
+
+        
         //Set Up Player
         this.player = new Player(this, 0, 0, 'rocketMan', 0)
         //this.gun1 = new Gun (this, this.game.config.width -50, 300, 'rocketMan', 0)
@@ -33,6 +37,7 @@ class Play extends Phaser.Scene {
                 callback: () => {
                     this.readyToFire = true
                     console.log("Firing Gun")
+                    this.guns[this.currentGunIndex].setVisible(true)
                     this.guns[this.currentGunIndex].attack(Phaser.Math.Between(50, this.game.config.height - 50))
                     this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, this.game.config.width - 50))
                     this.currentGunIndex = (this.currentGunIndex + 1) % this.guns.length;
