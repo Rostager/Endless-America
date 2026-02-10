@@ -4,6 +4,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
+        this.telegraphDuration = 1500
         this.body.setSize(20, scene.game.config.height *2)
         this.body.setEnable(false)
         this.body.setAllowGravity(false)
@@ -28,12 +29,12 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         this.scene.tweens.add({
             targets: this.shotTelegraph,
             alpha: 1,
-            duration: 800,
+            duration: this.telegraphDuration,
             onComplete: () => {
                 console.log("Fire Complete")
                 this.shotTelegraph.destroy()
                 this.body.setEnable(true)
-                this.scene.time.delayedCall(500, () => {
+                this.scene.time.delayedCall(100, () => {
                     this.body.enable = false
                     console.log("body disabled")
                 })
@@ -42,7 +43,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
             console.log("Player hit by gun!")
-            //player.die()
+            this.scene.player.death()
         })
         
         
