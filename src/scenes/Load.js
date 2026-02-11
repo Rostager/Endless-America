@@ -6,6 +6,7 @@ class Load extends Phaser.Scene{
     preload(){
         this.load.path = './assets/'
         this.load.image('rocketMan','RocketMan.png')
+        this.load.image('roadTile', 'TilingGroundV1.png')
         this.gunSheet = this.load.spritesheet('gunShot', 'GunTestSpriteSheet.png', {frameWidth: 256, frameHeight: 256})
         
     }
