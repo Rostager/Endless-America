@@ -4,7 +4,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
-        this.body.setSize(this.width / 2, this.height / 2)
+        this.body.setSize(this.width / 4, this.height / 4)
         this.body.setCollideWorldBounds(true)
         
         this.movespeed = 2
@@ -47,10 +47,10 @@ class RunState extends State {
         }
 
         //LEFT RIGHT RUN
-        if(left.isDown){
+        if(scene.keys.a.isDown){
             //add left force
             player.body.setVelocityX(-300 * player.movespeed)
-        } else if(right.isDown){
+        } else if(scene.keys.d.isDown){
             player.body.setVelocityX(300 * player.movespeed)
         }else{
             player.body.setVelocityX(-50) 
@@ -59,13 +59,13 @@ class RunState extends State {
     }
 }
 
-class FlyState extends State {
+class FlyState extends State {    //This is now gonna work as the "inAi state"
     enter (scene, player){
         console.log("enter-FlyState")
         player.body.setDragX(300)
         player.doubleJumpReady = true
         player.body.setMaxVelocity(player.maxAirSpeed, 999)
-        player.enableGlide = false;
+       // player.enableGlide = false;
     }
 
     execute (scene, player, time, delta){
@@ -83,25 +83,17 @@ class FlyState extends State {
             player.doubleJumpReady = false;
            // }
         }
-        else if(space.isDown && !player.doubleJumpReady && player.enableGlide){ 
-            //add force to player body
-            //let holdDuration = space.getDuration();
-            //console.log(holdDuration)
-
-            //if(holdDuration >= 300){
-            player.body.velocity.y = 20
-           // }
-          //  player.body.setAccelerationY(-800)
-        }else{
-           // player.body.setAccelerationY(0)
+        //Down slam
+        if(Phaser.Input.Keyboard.JustDown(scene.keys.s)){
+            player.body.setVelocityY(player.jumpHeight)
         }
 
         //LEFT RIGHT JETPACK
-        if(left.isDown){
+        if(scene.keys.a.isDown){
             //add left force
             player.body.velocity.x -= 100
            // player.body.setAccelerationX(-500)
-        } else if(right.isDown){
+        } else if(scene.keys.d.isDown){
             player.body.velocity.x += 100
           //  player.body.setAccelerationX(500)
         }else{

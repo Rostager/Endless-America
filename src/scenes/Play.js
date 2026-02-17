@@ -69,12 +69,12 @@ class Play extends Phaser.Scene {
         }
 
         //Debug on/off with D key
-            if(Phaser.Input.Keyboard.JustDown(this.keys.d)){
+            if(Phaser.Input.Keyboard.JustDown(this.keys.right)){
                 this.physics.world.drawDebug = !this.physics.world.drawDebug
                 this.physics.world.debugGraphic.clear()
             }
 
-            if(Phaser.Input.Keyboard.JustDown(this.keys.a)){
+            if(Phaser.Input.Keyboard.JustDown(this.keys.left)){
                 this.player.disableBody(true, false)
             }
         this.playerFSM.step()

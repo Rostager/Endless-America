@@ -8,6 +8,7 @@ class Load extends Phaser.Scene{
         this.load.image('rocketMan','RocketMan.png')
         this.load.image('roadTile', 'TilingGroundV1.png')
         this.gunSheet = this.load.spritesheet('gunShot', 'GunTestSpriteSheet.png', {frameWidth: 256, frameHeight: 256})
+        this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet.png', {frameWidth: 1200, frameHeight: 1200})
         
     }
 
