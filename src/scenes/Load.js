@@ -9,7 +9,7 @@ class Load extends Phaser.Scene{
         this.load.image('frontCityTile', 'Background.png')
         this.load.image('rocketMan','RocketMan.png')
         this.load.image('roadTile', 'TilingGroundV1.png')
-        this.gunSheet = this.load.spritesheet('gunShot', 'GunTestSpriteSheet.png', {frameWidth: 256, frameHeight: 256})
+        this.gunSheet = this.load.spritesheet('gunShot', 'pistolSpriteSheet.png', {frameWidth: 1280, frameHeight: 720})
         this.flagSheet = this.load.spritesheet('flag', 'WavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
         this.pistonSheet = this.load.spritesheet('piston', 'pistonSpriteSheet.png', {frameWidth: 300, frameHeight: 768})
        // this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet.png', {frameWidth: 1200, frameHeight: 1200})
@@ -20,7 +20,7 @@ class Load extends Phaser.Scene{
 
         this.anims.create({
             key: 'gunShotAnim',
-            frames: this.anims.generateFrameNumbers('gunShot', {start: 0, end: 45}),
+            frames: this.anims.generateFrameNumbers('gunShot', {start: 0, end: 55}),
             frameRate: 25,
             repeat: 0
         })
@@ -38,11 +38,12 @@ class Load extends Phaser.Scene{
             frameRate: 30,
             repeat: 0
         })
+
         /*
         this.anims.create({
             key: 'monsterAmericaAnim',
             frames: this.anims.generateFrameNumbers('monsterAmerica', {start: 0, end: 60}),
-            frameRate: 30,
+            frameRate: 30,  
             repeat: -1
         })
 */
