@@ -30,7 +30,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         this.body.setOffset(135, this.body.offset.y); // move the hitbox up to match the animation position
         this.scene.tweens.add({
             targets: this.shotTelegraph,
-            alpha: 1,
+            alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
                 console.log("Fire Complete")

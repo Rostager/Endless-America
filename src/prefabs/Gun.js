@@ -40,7 +40,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         this.play('gunShotAnim')
         this.scene.tweens.add({
             targets: this.shotTelegraph,
-            alpha: 1,
+            alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
                 console.log("Fire Complete")
