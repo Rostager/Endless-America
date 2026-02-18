@@ -53,7 +53,7 @@ class RunState extends State {
         } else if(scene.keys.d.isDown){
             player.body.setVelocityX(300 * player.movespeed)
         }else{
-            player.body.setVelocityX(-50) 
+            player.body.setVelocityX(scene.roadSpeed * -20) //Feels like road is draggin pla
         }
 
     }

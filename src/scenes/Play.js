@@ -14,13 +14,13 @@ class Play extends Phaser.Scene {
     create(){
        
         this.backCity = this.add.tileSprite(0,0,0,0,'backCityTile').setOrigin(0,0)
-        this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(8).setAlpha(0.75)
+        this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(6.5).setAlpha(0.75)
         this.flagAnimationOverlay.play('flagAnim')
         this.frontCity = this.add.tileSprite(0,0,0,0,'frontCityTile').setOrigin(0,0)
         this.flagAnimationOverlay.setPosition(this.game.config.width/2 - this.flagAnimationOverlay.displayWidth/2, this.game.config.height/2 - this.flagAnimationOverlay.displayHeight/2)
         this.road = this.add.tileSprite(0,100 , 0, 0, 'roadTile').setOrigin(0,0)
         //Set Up Player
-        this.player = new Player(this, 0, 0, 'rocketMan', 0)
+        this.player = new Player(this, 0, 0, 'rocketMan', 0).setScale(0.5)
 
         this.refernceSquare = this.add.rectangle(1280,600,350,350,0x00ff00,0.5).setOrigin(1,1)
         
@@ -72,7 +72,7 @@ class Play extends Phaser.Scene {
 
         if(this.playerFSM.state === 'death'){
             this.scene.start("gameOverScene")
-        }
+        } 
 
         //Debug on/off with D key
             if(Phaser.Input.Keyboard.JustDown(this.keys.right)){

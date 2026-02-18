@@ -4,8 +4,8 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
-        this.telegraphDuration = 1500
-        this.body.setSize(20, scene.game.config.height *2)
+        this.telegraphDuration = 1300
+        this.body.setSize(40, scene.game.config.height *2)
         this.body.setEnable(false)
         this.body.setAllowGravity(false)
         this.body.setImmovable(true)
@@ -22,10 +22,13 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
     attack(xPosition){
         console.log("In Gun Attack Function")
         this.x = xPosition
+        this.y = this.scene.game.config.height/2
         //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox
         
-        this.shotTelegraph = this.scene.add.rectangle(xPosition, this.scene.game.config.height/2, 20, this.scene.game.config.height, 0xff0000, 1)
+        this.shotTelegraph = this.scene.add.rectangle(xPosition, this.scene.game.config.height/2, 40, this.scene.game.config.height, 0xff0000, 1)
         this.shotTelegraph.setAlpha(0)
+        this.body.setOffset(135, this.body.offset.y); // move the hitbox up to match the animation position
+        this.play('pistonAnim')
         this.scene.tweens.add({
             targets: this.shotTelegraph,
             alpha: 1,
@@ -36,6 +39,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
                 this.body.setEnable(true)
                 this.scene.time.delayedCall(10, () => {
                     this.body.enable = false
+                    this.y = -100
                     console.log("body disabled")
                 })
             }
