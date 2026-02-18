@@ -12,7 +12,12 @@ class Play extends Phaser.Scene {
 
     }
     create(){
-        
+       
+        this.backCity = this.add.tileSprite(0,0,0,0,'backCityTile').setOrigin(0,0)
+        this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(8).setAlpha(0.75)
+        this.flagAnimationOverlay.play('flagAnim')
+        this.frontCity = this.add.tileSprite(0,0,0,0,'frontCityTile').setOrigin(0,0)
+        this.flagAnimationOverlay.setPosition(this.game.config.width/2 - this.flagAnimationOverlay.displayWidth/2, this.game.config.height/2 - this.flagAnimationOverlay.displayHeight/2)
         this.road = this.add.tileSprite(0,100 , 0, 0, 'roadTile').setOrigin(0,0)
         //Set Up Player
         this.player = new Player(this, 0, 0, 'rocketMan', 0)
@@ -41,6 +46,8 @@ class Play extends Phaser.Scene {
     }
 
     update(time,delta){
+        this.backCity.tilePositionX += this.roadSpeed * 0.25;
+        this.frontCity.tilePositionX += this.roadSpeed * 0.5;
         this.road.tilePositionX += this.roadSpeed;
         //Every 5 seconds have a new gun fire at the player, the speed of the shots between guns will decrease as time goes on
         if(this.readyToFire){
@@ -62,7 +69,6 @@ class Play extends Phaser.Scene {
        // if(this.playerFSM.state !== 'death'){
 
        // }
-
 
         if(this.playerFSM.state === 'death'){
             this.scene.start("gameOverScene")
