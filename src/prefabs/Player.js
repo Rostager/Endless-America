@@ -30,7 +30,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 class RunState extends State {
     enter(scene, player) {
-        console.log("enter-RunState")
+        //console.log("enter-RunState")
         player.body.setDragX(0)
         player.body.setMaxVelocity(player.maxRunSpeed,999)
     }
@@ -38,7 +38,7 @@ class RunState extends State {
     execute(scene, player){
         const { left, right, up, down, space, shift } = scene.keys
        // console.log('execute-RunState')
-
+        console.log(player.body.position.x, player.body.position.y)
         //JUMP
         if(Phaser.Input.Keyboard.JustDown(space)){ 
             player.body.setVelocityY(-player.jumpHeight)

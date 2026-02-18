@@ -28,7 +28,6 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         this.shotTelegraph = this.scene.add.rectangle(xPosition, this.scene.game.config.height/2, 40, this.scene.game.config.height, 0xff0000, 1)
         this.shotTelegraph.setAlpha(0)
         this.body.setOffset(135, this.body.offset.y); // move the hitbox up to match the animation position
-        this.play('pistonAnim')
         this.scene.tweens.add({
             targets: this.shotTelegraph,
             alpha: 1,
@@ -44,6 +43,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
                 })
             }
         })
+        this.play('pistonAnim')
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
             console.log("Player hit by gun!")

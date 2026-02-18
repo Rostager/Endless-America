@@ -5,16 +5,18 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)
 
         //Gun animation stuff such as offset and origin
-        this.visualYOffset = 32          // tweak this to move animation down
+        this.visualYOffset = 190     
+        this.visualXOffset = -300     // tweak this to move animation down
         this.setOrigin(0.5, 0.5)
 
-        //For hitboxx and telegraphed attack
-        this.telegraphDuration = 1500
+        //For hitboxx and telegraphed attack, sync this up with animation time
+        this.telegraphDuration = 1200
         //Because the janky way I move the animation down I need to move the body up by double that amount to match the animation position
         this.body.setSize(scene.game.config.width *2, 20)
         this.body.setEnable(false)
         this.body.setAllowGravity(false)
         this.body.setImmovable(true)
+        this.setScale(2)
     }
 
 
@@ -28,12 +30,12 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         console.log("In Gun Attack Function")
         
         //Set the position for the animation position
-        this.setPosition(this.scene.scale.width - 50, yPosition + this.visualYOffset);
-
+        this.setPosition(600, yPosition);
+        
         //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox
-        this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition, this.scene.game.config.width, 20, 0xff0000, 1)
+        this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition + 110, this.scene.game.config.width, 20, 0xff0000, 1)
         this.shotTelegraph.setAlpha(0)
-        this.body.setOffset(this.body.offset.x, this.visualYOffset *2.7); // move the hitbox up to match the animation position
+        this.body.setOffset(this.body.offset.x,this.visualYOffset); // move the hitbox up to match the animation position
         //play the animation of the gun shooting (Adjust the telegraphDuration to match up with the animation)
         this.play('gunShotAnim')
         this.scene.tweens.add({

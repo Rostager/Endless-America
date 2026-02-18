@@ -29,6 +29,9 @@ class Play extends Phaser.Scene {
         this.physics.add.existing(this.platform, true)
         this.physics.add.collider(this.player, this.platform)
 
+        this.walls = this.add.rectangle(850, this.game.config.height/2, 10, this.game.config.height, 0x000000, 0)
+        this.physics.add.existing(this.walls, true)
+        this.physics.add.collider(this.player, this.walls)
         
         
         //Set Up Keys
@@ -58,8 +61,8 @@ class Play extends Phaser.Scene {
                     this.readyToFire = true
                     console.log("Firing Gun")
                     this.guns[this.currentGunIndex].setVisible(true)
-                    this.guns[this.currentGunIndex].attack(Phaser.Math.Between(50, this.game.config.height - 50))
-                    this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, this.game.config.width - 50))
+                    this.guns[this.currentGunIndex].attack(Phaser.Math.Between(50, 450))
+                    this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
                     this.currentGunIndex = (this.currentGunIndex + 1) % this.guns.length;
                     this.fireDelay = Math.max(500, this.fireDelay - 250); // Decrease delay but not below 0.5 seconds
                     this.roadSpeed = Math.min(20, this.roadSpeed + 0.5); // Increase road speed but not above 20
