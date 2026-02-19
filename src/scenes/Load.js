@@ -12,6 +12,7 @@ class Load extends Phaser.Scene{
         this.gunSheet = this.load.spritesheet('gunShot', 'pistolV2.png', {frameWidth: 512, frameHeight: 288})
         this.flagSheet = this.load.spritesheet('flag', 'WavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
         this.pistonSheet = this.load.spritesheet('piston', 'pistonSpriteSheet.png', {frameWidth: 300, frameHeight: 768})
+        this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet2.png', {frameWidth: 350, frameHeight: 350})
        // this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet.png', {frameWidth: 1200, frameHeight: 1200})
         
     }
@@ -39,6 +40,12 @@ class Load extends Phaser.Scene{
             repeat: 0
         })
 
+        this.anims.create({
+            key: 'monsterAmericaAnim',
+            frames: this.anims.generateFrameNumbers('monsterAmerica', {start: 0, end: 59}),
+            frameRate: 30,  
+            repeat: -1
+        })
         /*
         this.anims.create({
             key: 'monsterAmericaAnim',

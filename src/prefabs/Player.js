@@ -11,7 +11,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.maxAirSpeed = 400
         this.maxRunSpeed = 800
         this.doubleJumpReady = true
-        this.jumpHeight = 800
+        this.jumpHeight = 600
 
         this.enableGlide = false;
     
@@ -53,7 +53,7 @@ class RunState extends State {
         } else if(scene.keys.d.isDown){
             player.body.setVelocityX(300 * player.movespeed)
         }else{
-            player.body.setVelocityX(scene.roadSpeed * -20) //Feels like road is draggin pla
+            player.body.setVelocityX(scene.roadSpeed * 20) //Feels like road is draggin pla
         }
 
     }
