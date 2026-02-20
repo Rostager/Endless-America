@@ -46,6 +46,20 @@ class Play extends Phaser.Scene {
 
         this.sound.add('pistolSound')
         this.sound.add('pistonSound')
+        this.sound.add('introTrack')
+        this.loopTrack = this.sound.add('loopTrack')
+
+        this.sound.play('introTrack', { 
+                volume: 0.4
+            })
+
+        this.time.delayedCall(15500, () => {
+            this.sound.play('loopTrack', { 
+                volume: 0.4,
+                loop: true
+            })
+        })
+            
 
          for(let i = 0; i < 5; i++){
             this.guns.push(new Gun(this, this.game.config.width -50, 300, 'gunShot', 0))
