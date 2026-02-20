@@ -14,20 +14,21 @@ class Play extends Phaser.Scene {
 
     }
     create(){
-       
+       //Asthetic Stuff
         this.backCity = this.add.tileSprite(0,0,0,0,'backCityTile').setOrigin(0,0)
         this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(6.5).setAlpha(0.75)
         this.flagAnimationOverlay.play('flagAnim')
         this.frontCity = this.add.tileSprite(0,0,0,0,'frontCityTile').setOrigin(0,0)
         this.flagAnimationOverlay.setPosition(this.game.config.width/2 - this.flagAnimationOverlay.displayWidth/2, this.game.config.height/2 - this.flagAnimationOverlay.displayHeight/2)
         this.road = this.add.tileSprite(0,100 , 0, 0, 'roadTile').setOrigin(0,0)
-        //Set Up Player
-        this.player = new Player(this, 0, 0, 'rocketMan', 0).setScale(0.5)
+        this.monsterAmerica = this.add.sprite(800, 100, 'monsterAmerica').setOrigin(0,0).setScale(1.5)
+        this.monsterAmerica.play('monsterAmericaAnim')
 
-        this.refernceSquare = this.add.rectangle(1280,600,350,350,0x00ff00,0.5).setOrigin(1,1)
-        
+        //Set Up Player
+        this.player = new Player(this, 0, 0, 'rocketMan', 0).setScale(0.5,0.25)
+
         //Make invisble collision boxes for the play area and enable the player to stand on it 
-        this.platform = this.add.rectangle(this.game.config.width/2, 500, this.game.config.width, 10, 0x000000, 0)
+        this.platform = this.add.rectangle(this.game.config.width/2, 530, this.game.config.width, 40, 0x000000, 0)
         this.physics.add.existing(this.platform, true)
         this.physics.add.collider(this.player, this.platform)
 
@@ -54,9 +55,10 @@ class Play extends Phaser.Scene {
     }
 
     update(time,delta){
-        this.backCity.tilePositionX += this.roadSpeed * 0.25;
-        this.frontCity.tilePositionX += this.roadSpeed * 0.5;
-        this.road.tilePositionX += this.roadSpeed;
+        this.timeDelta = delta
+        this.backCity.tilePositionX += this.roadSpeed * -0.25 * this.timeDelta;
+        this.frontCity.tilePositionX += this.roadSpeed * -0.5 * this.timeDelta;
+        this.road.tilePositionX += this.roadSpeed * -1 * this.timeDelta;
         //Every 5 seconds have a new gun fire at the player, the speed of the shots between guns will decrease as time goes on
         if(this.readyToFire){
             this.readyToFire = false
