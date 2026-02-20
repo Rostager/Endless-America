@@ -1,4 +1,10 @@
-/*things to change
+/* Name: Robert Stager
+   Date: 2/20/2026
+   Title: Endless America
+   Hourt to complete: ~30 hours
+
+
+things to change
 - THe player should be running away from the monster
   The ground needs to go the other directon and when the player is on the ground should be going the other way
 */

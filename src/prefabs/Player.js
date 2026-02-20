@@ -31,6 +31,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 class RunState extends State {
     enter(scene, player) {
         //console.log("enter-RunState")
+        scene.player.play('playerRunAnim')
         player.body.setDragX(0)
         player.body.setMaxVelocity(player.maxRunSpeed,999)
     }

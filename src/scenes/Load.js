@@ -15,9 +15,11 @@ class Load extends Phaser.Scene{
         this.flagSheet = this.load.spritesheet('flag', 'WavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
         this.pistonSheet = this.load.spritesheet('piston', 'pistonSpriteSheet.png', {frameWidth: 300, frameHeight: 768})
         this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet2.png', {frameWidth: 350, frameHeight: 350})
+        this.playerRun = this.load.spritesheet('playerRun', 'RunSprite.png', {frameWidth: 256, frameHeight: 300})
         //Audio
         this.pistolSound = this.load.audio('pistolSound', 'pistolShotSound.wav')
         this.pistonSound = this.load.audio('pistonSound', 'pistonSound.mp3')
+        //Music by the amazingMichael Stager!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         this.playIntroMusic = this.load.audio('introTrack', 'EndlessAmericaPlayIntro.wav')
         this.playLoopMusic = this.load.audio('loopTrack', 'EndlessAmericaPlayLoop.wav')
       
@@ -53,14 +55,13 @@ class Load extends Phaser.Scene{
             frameRate: 30,  
             repeat: -1
         })
-        /*
+
         this.anims.create({
-            key: 'monsterAmericaAnim',
-            frames: this.anims.generateFrameNumbers('monsterAmerica', {start: 0, end: 60}),
-            frameRate: 30,  
+            key: 'playerRunAnim',
+            frames: this.anims.generateFrameNumbers('playerRun', {start: 0, end: 3}),
+            frameRate: 6,
             repeat: -1
         })
-*/
 
         console.log("create done")
         this.scene.start("menuScene")
