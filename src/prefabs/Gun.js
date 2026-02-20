@@ -30,14 +30,13 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
     3rd: If the player is hit they die 
     */
     attack(yPosition){
-        //console.log("In Gun Attack Function")
         
         //Set the position for the animation position
         this.setPosition(600, yPosition);
         
-        //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox
-        this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition + 110, this.scene.game.config.width, 20, 0xff0000, 1)
-        this.shotTelegraph.setAlpha(0)
+        //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox (Deprocated the visual) 
+        //this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition + 110, this.scene.game.config.width, 20, 0xff0000, 1)
+        //this.shotTelegraph.setAlpha(0)
         this.body.setOffset(this.body.offset.x,this.visualYOffset); // move the hitbox up to match the animation position
         //play the animation of the gun shooting (Adjust the telegraphDuration to match up with the animation)
         this.play('gunShotAnim')
@@ -48,20 +47,24 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
             })
         })
 
+        //Not efficent, was used when the telegraph was visible, now just used to time up with the animation, could use a delayedCall instead
         this.scene.tweens.add({
             targets: this.shotTelegraph,
             alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
                 //console.log("Fire Complete")
-                this.shotTelegraph.destroy()
-                this.body.setEnable(true)
+                //this.shotTelegraph.destroy()
+
+                //Quickly anable hitbox on then off
+                this.body.setEnable(true)                      
                 this.scene.time.delayedCall(10, () => {
                     this.body.enable = false
                     //console.log("body disabled")
                 })
             }
         })
+        
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
             //console.log("Player hit by gun!")

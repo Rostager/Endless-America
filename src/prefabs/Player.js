@@ -38,7 +38,7 @@ class RunState extends State {
     }
 
     execute(scene, player){
-        const { left, right, up, down, space, shift } = scene.keys
+        const space = scene.keys.space
        // console.log('execute-RunState')
        // console.log(player.body.position.x, player.body.position.y)
         //JUMP
@@ -72,7 +72,7 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
     }
 
     execute (scene, player, time, delta){
-        const { left, right, up, down, space, shift } = scene.keys
+        const space = scene.keys.space
        // console.log('execute-FlyState')
 
         //console.log(player.body.acceleration)
