@@ -4,6 +4,8 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
+        this.scene = scene
+
         this.telegraphDuration = 1300
         this.body.setSize(40, scene.game.config.height *2)
         this.body.setEnable(false)
@@ -28,9 +30,17 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
         this.shotTelegraph = this.scene.add.rectangle(xPosition, this.scene.game.config.height/2, 40, this.scene.game.config.height, 0xff0000, 1)
         this.shotTelegraph.setAlpha(0)
         this.body.setOffset(135, this.body.offset.y); // move the hitbox up to match the animation position
+
+        this.scene.time.delayedCall(this.telegraphDuration - 1000, () => {
+            this.scene.sound.play('pistonSound', { 
+                volume: 0.4,
+                rate: Phaser.Math.FloatBetween(0.75, 1.25) // Add slight randomization to the pitch
+            })
+        })
+
         this.scene.tweens.add({
             targets: this.shotTelegraph,
-            alpha: 1,
+            alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
                 console.log("Fire Complete")

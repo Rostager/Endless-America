@@ -12,6 +12,9 @@ class Load extends Phaser.Scene{
         this.gunSheet = this.load.spritesheet('gunShot', 'pistolV2.png', {frameWidth: 512, frameHeight: 288})
         this.flagSheet = this.load.spritesheet('flag', 'WavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
         this.pistonSheet = this.load.spritesheet('piston', 'pistonSpriteSheet.png', {frameWidth: 300, frameHeight: 768})
+        this.pistolSound = this.load.audio('pistolSound', 'pistolShotSound.wav')
+        this.pistonSound = this.load.audio('pistonSound', 'pistonSound.mp3')
+        
        // this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet.png', {frameWidth: 1200, frameHeight: 1200})
         
     }

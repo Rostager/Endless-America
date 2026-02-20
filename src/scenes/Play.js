@@ -7,7 +7,9 @@ class Play extends Phaser.Scene {
         this.pistons = []
         this.currentGunIndex = 0
         this.readyToFire = true
+        this.readyToSlam = true
         this.fireDelay = 3000;
+        this.slamDelay = 5000;
         this.roadSpeed = 5;
 
     }
@@ -41,6 +43,9 @@ class Play extends Phaser.Scene {
         this.keys.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
         this.keys.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
 
+        this.sound.add('pistolSound')
+        this.sound.add('pistonSound')
+
          for(let i = 0; i < 5; i++){
             this.guns.push(new Gun(this, this.game.config.width -50, 300, 'gunShot', 0))
             this.guns[i].setVisible(false)
@@ -56,19 +61,35 @@ class Play extends Phaser.Scene {
         if(this.readyToFire){
             this.readyToFire = false
             this.time.addEvent({
-                delay: this.fireDelay,
+                delay: Phaser.Math.Between(this.fireDelay - 1000, this.fireDelay + 1000),
                 callback: () => {
                     this.readyToFire = true
                     console.log("Firing Gun")
                     this.guns[this.currentGunIndex].setVisible(true)
                     this.guns[this.currentGunIndex].attack(Phaser.Math.Between(50, 450))
-                    this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
+                    //this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
                     this.currentGunIndex = (this.currentGunIndex + 1) % this.guns.length;
-                    this.fireDelay = Math.max(500, this.fireDelay - 250); // Decrease delay but not below 0.5 seconds
+                    this.fireDelay = Math.max(1500, this.fireDelay - 250); // Decrease delay but not below 0.5 seconds
                     this.roadSpeed = Math.min(20, this.roadSpeed + 0.5); // Increase road speed but not above 20
                 }
             })
         }
+
+        if(this.readyToSlam){
+            this.readyToSlam = false
+            this.time.addEvent({
+                delay: Phaser.Math.Between(this.slamDelay - 1000, this.slamDelay + 1000),
+                callback: () => {
+                    this.readyToSlam = true 
+                    console.log("Slamming Piston")
+                    this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
+                    this.currentGunIndex = (this.currentGunIndex + 1) % this.guns.length;
+                    this.slamDelay = Math.max(1500, this.slamDelay - 500); // Decrease delay but not below 0.5 seconds
+                    //this.roadSpeed = Math.min(20, this.roadSpeed + 0.5); // Increase road speed but not above 20
+                }
+            })
+        }
+
        // if(this.playerFSM.state !== 'death'){
 
        // }

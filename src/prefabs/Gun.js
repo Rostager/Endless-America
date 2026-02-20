@@ -4,6 +4,8 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
+        this.scene = scene
+
         //Gun animation stuff such as offset and origin
         this.visualYOffset = 190     
         this.visualXOffset = -300     // tweak this to move animation down
@@ -17,6 +19,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         this.body.setAllowGravity(false)
         this.body.setImmovable(true)
         this.setScale(2)
+
     }
 
 
@@ -38,9 +41,16 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         this.body.setOffset(this.body.offset.x,this.visualYOffset); // move the hitbox up to match the animation position
         //play the animation of the gun shooting (Adjust the telegraphDuration to match up with the animation)
         this.play('gunShotAnim')
+        this.scene.time.delayedCall(this.telegraphDuration - 100, () => {
+            this.scene.sound.play('pistolSound', { 
+                volume: 0.4,
+                rate: Phaser.Math.FloatBetween(0.75, 1.25) // Add slight randomization to the pitch
+            })
+        })
+
         this.scene.tweens.add({
             targets: this.shotTelegraph,
-            alpha: 1,
+            alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
                 console.log("Fire Complete")
