@@ -10,12 +10,14 @@ class Load extends Phaser.Scene{
         this.load.image('frontCityTile', 'Background.png')
         this.load.image('rocketMan','RocketMan.png')
         this.load.image('roadTile', 'TilingGroundV1.png')
+       
         //Spritesheets
         this.gunSheet = this.load.spritesheet('gunShot', 'pistolV2.png', {frameWidth: 512, frameHeight: 288})
         this.flagSheet = this.load.spritesheet('flag', 'WavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
         this.pistonSheet = this.load.spritesheet('piston', 'pistonSpriteSheet.png', {frameWidth: 300, frameHeight: 768})
         this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet2.png', {frameWidth: 350, frameHeight: 350})
         this.playerRun = this.load.spritesheet('playerRun', 'RunSprite.png', {frameWidth: 256, frameHeight: 300})
+        this.jumpSheet = this.load.spritesheet('jump', 'Jump.png', {frameWidth: 256, frameHeight: 300})
         //Audio
         this.pistolSound = this.load.audio('pistolSound', 'pistolShotSound.wav')
         this.pistonSound = this.load.audio('pistonSound', 'pistonSound.mp3')
@@ -60,6 +62,12 @@ class Load extends Phaser.Scene{
             key: 'playerRunAnim',
             frames: this.anims.generateFrameNumbers('playerRun', {start: 0, end: 3}),
             frameRate: 6,
+            repeat: -1
+        })
+        this.anims.create({
+            key: 'playerJumpAnim',
+            frames: this.anims.generateFrameNumbers('jump', {start: 0, end: 0}),
+            frameRate: 1,
             repeat: -1
         })
 

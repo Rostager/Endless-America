@@ -12,7 +12,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         this.setOrigin(0.5, 0.5)
 
         //For hitboxx and telegraphed attack, sync this up with animation time
-        this.telegraphDuration = 1200
+        this.telegraphDuration = 1150
         //Because the janky way I move the animation down I need to move the body up by double that amount to match the animation position
         this.body.setSize(scene.game.config.width *2, 20)
         this.body.setEnable(false)
@@ -30,7 +30,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
     3rd: If the player is hit they die 
     */
     attack(yPosition){
-        console.log("In Gun Attack Function")
+        //console.log("In Gun Attack Function")
         
         //Set the position for the animation position
         this.setPosition(600, yPosition);
@@ -53,18 +53,18 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
             alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
-                console.log("Fire Complete")
+                //console.log("Fire Complete")
                 this.shotTelegraph.destroy()
                 this.body.setEnable(true)
                 this.scene.time.delayedCall(10, () => {
                     this.body.enable = false
-                    console.log("body disabled")
+                    //console.log("body disabled")
                 })
             }
         })
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
-            console.log("Player hit by gun!")
+            //console.log("Player hit by gun!")
             this.scene.player.death()
         })
         

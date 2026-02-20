@@ -22,7 +22,7 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
     3rd: If the player is hit they die 
     */
     attack(xPosition){
-        console.log("In Gun Attack Function")
+        //.log("In Gun Attack Function")
         this.x = xPosition
         this.y = this.scene.game.config.height/2
         //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox
@@ -43,20 +43,20 @@ class Piston extends Phaser.Physics.Arcade.Sprite {
             alpha: 0,
             duration: this.telegraphDuration,
             onComplete: () => {
-                console.log("Fire Complete")
+                //console.log("Fire Complete")
                 this.shotTelegraph.destroy()
                 this.body.setEnable(true)
                 this.scene.time.delayedCall(10, () => {
                     this.body.enable = false
                     this.y = -100
-                    console.log("body disabled")
+                    //console.log("body disabled")
                 })
             }
         })
         this.play('pistonAnim')
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
-            console.log("Player hit by gun!")
+            //console.log("Player hit by gun!")
             this.scene.player.death()
         })
         

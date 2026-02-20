@@ -10,7 +10,7 @@ class Play extends Phaser.Scene {
         this.readyToSlam = true
         this.fireDelay = 3000;
         this.slamDelay = 5000;
-        this.roadSpeed = 5;
+        this.roadSpeed = 1;
 
     }
     create(){
@@ -28,7 +28,7 @@ class Play extends Phaser.Scene {
         this.player = new Player(this, 0, 0, 'rocketMan', 0).setScale(0.5,0.25)
 
         //Make invisble collision boxes for the play area and enable the player to stand on it 
-        this.platform = this.add.rectangle(this.game.config.width/2, 530, this.game.config.width, 40, 0x000000, 0)
+        this.platform = this.add.rectangle(this.game.config.width/2, 560, this.game.config.width, 40, 0x000000, 0)
         this.physics.add.existing(this.platform, true)
         this.physics.add.collider(this.player, this.platform)
 
@@ -46,7 +46,7 @@ class Play extends Phaser.Scene {
 
         this.sound.add('pistolSound')
         this.sound.add('pistonSound')
-        this.sound.add('introTrack')
+        this.introTrack = this.sound.add('introTrack')
         this.loopTrack = this.sound.add('loopTrack')
 
         this.sound.play('introTrack', { 
@@ -80,7 +80,7 @@ class Play extends Phaser.Scene {
                 delay: Phaser.Math.Between(this.fireDelay - 1000, this.fireDelay + 1000),
                 callback: () => {
                     this.readyToFire = true
-                    console.log("Firing Gun")
+                    //console.log("Firing Gun")
                     this.guns[this.currentGunIndex].setVisible(true)
                     this.guns[this.currentGunIndex].attack(Phaser.Math.Between(50, 450))
                     //this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
@@ -97,7 +97,7 @@ class Play extends Phaser.Scene {
                 delay: Phaser.Math.Between(this.slamDelay - 1000, this.slamDelay + 1000),
                 callback: () => {
                     this.readyToSlam = true 
-                    console.log("Slamming Piston")
+                   //console.log("Slamming Piston")
                     this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
                     this.currentGunIndex = (this.currentGunIndex + 1) % this.guns.length;
                     this.slamDelay = Math.max(1500, this.slamDelay - 500); // Decrease delay but not below 0.5 seconds
@@ -111,6 +111,7 @@ class Play extends Phaser.Scene {
        // }
 
         if(this.playerFSM.state === 'death'){
+            this.sound.stopAll()
             this.scene.start("gameOverScene")
         } 
 

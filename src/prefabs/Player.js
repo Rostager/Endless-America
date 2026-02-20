@@ -4,7 +4,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
-        this.body.setSize(this.width / 4, this.height / 4)
+        this.body.setSize(this.width / 4, this.height - 20)
+        this.body.setOffset(this.width / 2 - this.body.width / 2, 60)
         this.body.setCollideWorldBounds(true)
         
         this.movespeed = 2
@@ -30,8 +31,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 class RunState extends State {
     enter(scene, player) {
-        //console.log("enter-RunState")
-        scene.player.play('playerRunAnim')
+        console.log("enter-RunState")
+        player.anims.play('playerRunAnim', true)
         player.body.setDragX(0)
         player.body.setMaxVelocity(player.maxRunSpeed,999)
     }
@@ -39,7 +40,7 @@ class RunState extends State {
     execute(scene, player){
         const { left, right, up, down, space, shift } = scene.keys
        // console.log('execute-RunState')
-        console.log(player.body.position.x, player.body.position.y)
+       // console.log(player.body.position.x, player.body.position.y)
         //JUMP
         if(Phaser.Input.Keyboard.JustDown(space)){ 
             player.body.setVelocityY(-player.jumpHeight)
@@ -63,6 +64,7 @@ class RunState extends State {
 class FlyState extends State {    //This is now gonna work as the "inAi state"
     enter (scene, player){
         console.log("enter-FlyState")
+        player.anims.play('playerJumpAnim', true)
         player.body.setDragX(300)
         player.doubleJumpReady = true
         player.body.setMaxVelocity(player.maxAirSpeed, 999)
@@ -102,8 +104,9 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
         }
 
         //Check if body is touching bottom of world bounds
-        if(player.body.blocked.down){
+        if(player.body.blocked.down && player.body.velocity.y === 0){
             this.stateMachine.transition('run')
+            return
         }
         
     }
