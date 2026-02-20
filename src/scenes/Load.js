@@ -18,6 +18,7 @@ class Load extends Phaser.Scene{
         this.monsterAmerica = this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet2.png', {frameWidth: 350, frameHeight: 350})
         this.playerRun = this.load.spritesheet('playerRun', 'RunSprite.png', {frameWidth: 256, frameHeight: 300})
         this.jumpSheet = this.load.spritesheet('jump', 'Jump.png', {frameWidth: 256, frameHeight: 300})
+        this.slamSheet = this.load.spritesheet('slam', 'Slam.png', {frameWidth: 256, frameHeight: 300})
         //Audio
         this.pistolSound = this.load.audio('pistolSound', 'pistolShotSound.wav')
         this.pistonSound = this.load.audio('pistonSound', 'pistonSound.mp3')
@@ -67,6 +68,12 @@ class Load extends Phaser.Scene{
         this.anims.create({
             key: 'playerJumpAnim',
             frames: this.anims.generateFrameNumbers('jump', {start: 0, end: 0}),
+            frameRate: 1,
+            repeat: -1
+        })
+        this.anims.create({
+            key: 'playerSlamAnim',
+            frames: this.anims.generateFrameNumbers('slam', {start: 0, end: 0}),
             frameRate: 1,
             repeat: -1
         })

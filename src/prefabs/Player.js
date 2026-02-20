@@ -89,6 +89,7 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
         //Down slam
         if(Phaser.Input.Keyboard.JustDown(scene.keys.s)){
             player.body.setVelocityY(player.jumpHeight)
+            player.anims.play('playerSlamAnim', true)
         }
 
         //LEFT RIGHT JETPACK
