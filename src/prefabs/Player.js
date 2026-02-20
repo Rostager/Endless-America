@@ -39,11 +39,13 @@ class RunState extends State {
 
     execute(scene, player){
         const space = scene.keys.space
-       // console.log('execute-RunState')
-       // console.log(player.body.position.x, player.body.position.y)
         //JUMP
         if(Phaser.Input.Keyboard.JustDown(space)){ 
             player.body.setVelocityY(-player.jumpHeight)
+            scene.sound.play('whoosh', {
+                volume: 0.7,
+                rate: Phaser.Math.FloatBetween(0.75, 1.25) // Add slight randomization to the pitch
+            })
             this.stateMachine.transition('fly')
             return
         }
@@ -71,7 +73,7 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
        // player.enableGlide = false;
     }
 
-    execute (scene, player, time, delta){
+    execute (scene, player){
         const space = scene.keys.space
        // console.log('execute-FlyState')
 
@@ -82,6 +84,11 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
         //UP DOWN JETPACK
         if(Phaser.Input.Keyboard.JustDown(space) && player.doubleJumpReady){
             player.body.setVelocityY(-player.jumpHeight)
+            scene.sound.play('whoosh', {
+                volume: 0.7,
+                rate: Phaser.Math.FloatBetween(0.75, 1.25) // Add slight randomization to the pitch
+            })
+            player.doubleJumpReady = false;
             //if(Phaser.Input.Keyboard.JustUp(space)){
             player.doubleJumpReady = false;
            // }
@@ -89,6 +96,10 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
         //Down slam
         if(Phaser.Input.Keyboard.JustDown(scene.keys.s)){
             player.body.setVelocityY(player.jumpHeight)
+            scene.sound.play('whoosh', {
+                volume: 0.7,
+                rate: Phaser.Math.FloatBetween(0.75, 1.25) // Add slight randomization to the pitch
+            })
             player.anims.play('playerSlamAnim', true)
         }
 

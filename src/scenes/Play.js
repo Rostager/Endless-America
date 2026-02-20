@@ -3,6 +3,7 @@ class Play extends Phaser.Scene {
         super('playScene')
     }
     preload(){
+        this.physics.world.drawDebug = false
         this.guns = []
         this.pistons = []
         this.currentGunIndex = 0
@@ -46,6 +47,8 @@ class Play extends Phaser.Scene {
 
         this.sound.add('pistolSound')
         this.sound.add('pistonSound')
+        this.sound.add('whoosh')
+
         this.introTrack = this.sound.add('introTrack')
         this.loopTrack = this.sound.add('loopTrack')
 
@@ -114,16 +117,7 @@ class Play extends Phaser.Scene {
             this.sound.stopAll()
             this.scene.start("gameOverScene")
         } 
-
-        //Debug on/off with D key
-            if(Phaser.Input.Keyboard.JustDown(this.keys.right)){
-                this.physics.world.drawDebug = !this.physics.world.drawDebug
-                this.physics.world.debugGraphic.clear()
-            }
-
-            if(Phaser.Input.Keyboard.JustDown(this.keys.left)){
-                this.player.disableBody(true, false)
-            }
+           
         this.playerFSM.step()
     }
 }

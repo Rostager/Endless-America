@@ -2,7 +2,8 @@
    Date: 2/20/2026
    Title: Endless America
    Hourt to complete: ~30 hours
-   Creative Tilt:
+   Creative Tilt: I mean look at the art, its a monster made of america chasing you and shooting at you, what more do you need?
+   Technical Tilt: 
 
 things to change
 - THe player should be running away from the monster (DONE_)

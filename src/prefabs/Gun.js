@@ -35,8 +35,8 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
         this.setPosition(600, yPosition);
         
         //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox (Deprocated the visual) 
-        //this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition + 110, this.scene.game.config.width, 20, 0xff0000, 1)
-        //this.shotTelegraph.setAlpha(0)
+        this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition + 110, this.scene.game.config.width, 20, 0xff0000, 1)
+        this.shotTelegraph.setAlpha(0)
         this.body.setOffset(this.body.offset.x,this.visualYOffset); // move the hitbox up to match the animation position
         //play the animation of the gun shooting (Adjust the telegraphDuration to match up with the animation)
         this.play('gunShotAnim')
@@ -64,7 +64,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
                 })
             }
         })
-        
+
         //check if player is touching the guns hitbox and if so return true
         this.scene.physics.add.overlap(this.scene.player, this, (player, gun) => {
             //console.log("Player hit by gun!")
