@@ -5,13 +5,26 @@ class GameOver extends Phaser.Scene {
 
 
     create(data){
+        //Deal with saving highscore locally
+        if(localStorage.getItem('highScore') === null || data.score > localStorage.getItem('highScore')){
+        localStorage.setItem('highScore', data.score);
+        }else if(data.score < localStorage.getItem('highScore')){
+            data.score = localStorage.getItem('highScore')
+        }else{
+            data.score = localStorage.getItem('highScore')
+        }
+
         console.log(data.score)
         this.sound.play('playerDeath')
+        this.sound.play('menuSong', {
+            volume: 0.2
+        })
         this.bodyPile = this.add.image(0, 768, 'bodyPile').setOrigin(0,0)
         this.endingText = this.add.image(0,0, 'endText').setOrigin(0,0).setAlpha(0)
         this.endingScoreText = this.add.text(this.game.config.width/2, 200, "Score: " + data.score + " seconds", {fontSize: '32px', fill: '#fff'}).setOrigin(0.5).setAlpha(0)
+        this.highScoreText = this.add.text(this.game.config.width/2, 250, "Highscore: " + data.score + " seconds", {fontSize: '32px', fill: '#fff'}).setOrigin(0.5).setAlpha(0)
         this.sound.play('bodyRise', {
-            volume: 0.5
+            volume: 1.2
         })
         //Makes it tween up from the bottom of the screen and shake will rising
         this.tweens.add({
@@ -27,7 +40,7 @@ class GameOver extends Phaser.Scene {
         })
 
          this.tweens.add({
-            targets: [this.endingText, this.endingScoreText],
+            targets: [this.endingText, this.endingScoreText, this.highScoreText],
             alpha: 1,
             duration: 2000,
             delay: 4000
@@ -38,6 +51,7 @@ class GameOver extends Phaser.Scene {
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(this.input.keyboard.createCursorKeys().space)){
+            this.sound.stopAll()
             this.scene.start("playScene")
         }
     }

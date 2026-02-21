@@ -3,14 +3,14 @@
    Title: Endless America
    Hourt to complete: ~30 hours
    Creative Tilt: I mean look at the art, its a monster made of america chasing you and shooting at you, what more do you need?
-   Technical Tilt: 
+   Technical Tilt: I completely copied nathans technical tilt and made the highscore save locally
 
 things to change
 - THe player should be running away from the monster (DONE)
 - The ground needs to go the other directon and when the player is on the ground should be going the other way (DONE)
-- Include in-game instructions
+- Include in-game instructions (DONE)
 - Add jump sound effect, and player death sound effect (bones crushing or something) (DONE)
-- Add time based score system
+- Add time based score system (DONE)
 - Add credit screen
 
 */
