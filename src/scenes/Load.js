@@ -10,7 +10,7 @@ class Load extends Phaser.Scene{
         this.load.image('frontCityTile', 'Background.png')
         this.load.image('rocketMan','RocketMan.png')
         this.load.image('roadTile', 'TilingGroundV1.png')
-        this.load.image('menuBackground', 'mainMenuSplashArt.png')
+        this.load.image('menuBackground', 'MainMenuSplashArt.png')
         this.load.image('bodyPile', 'BodyPile.png')
         this.load.image('endText', 'EndingText.png')
         this.load.image('mCredit', 'MichaelCredit.png')
@@ -19,7 +19,7 @@ class Load extends Phaser.Scene{
        
         //Spritesheets
         this.load.spritesheet('gunShot', 'pistolV2.png', {frameWidth: 512, frameHeight: 288})
-        this.load.spritesheet('flag', 'WavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
+        this.load.spritesheet('flag', 'wavingFlagSpriteSheet.png', {frameWidth: 220, frameHeight: 137})
         this.load.spritesheet('piston', 'pistonSpriteSheet.png', {frameWidth: 300, frameHeight: 768})
         this.load.spritesheet('monsterAmerica', 'MonsterAmericaSpriteSheet2.png', {frameWidth: 350, frameHeight: 350})
         this.load.spritesheet('playerRun', 'RunSprite.png', {frameWidth: 256, frameHeight: 300})
@@ -28,7 +28,7 @@ class Load extends Phaser.Scene{
         //Audio
         this.load.audio('pistolSound', 'pistolShotSound.wav')
         this.load.audio('pistonSound', 'pistonSound.mp3')
-        this.load.audio('whoosh', 'whoosh.wav')
+        this.load.audio('whoosh', 'Whoosh.wav')
         this.load.audio('playerDeath', 'Death.wav')
         this.load.audio('menuSong', 'MenuMusic.wav')
         this.load.audio('bodyRise', 'BodyRise.mp3')
