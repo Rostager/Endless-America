@@ -5,6 +5,7 @@ class GameOver extends Phaser.Scene {
 
 
     create(data){
+        this.spamProtection = 0;
         //Deal with saving highscore locally
         if(localStorage.getItem('highScore') === null || data.score > localStorage.getItem('highScore')){
         localStorage.setItem('highScore', data.score);
@@ -40,8 +41,15 @@ class GameOver extends Phaser.Scene {
         })
 
          this.tweens.add({
-            targets: [this.endingText, this.endingScoreText, this.highScoreText, this.michaelCredit, this.robertCredit],
+            targets: [this.endingText, this.endingScoreText, this.highScoreText],
             alpha: 1,
+            duration: 2000,
+            delay: 4000
+        })
+
+        this.tweens.add({
+            targets: [this.michaelCredit, this.robertCredit],
+            alpha: 0.75,
             duration: 2000,
             delay: 4000
         })
@@ -49,10 +57,11 @@ class GameOver extends Phaser.Scene {
         //this.add.text(this.game.config.width/2, this.game.config.height/2 + 100, "Press the space bar to return to the menu", {fontSize: '24px', fill: '#fff'}).setOrigin(0.5)
     }
 
-    update() {
-        if(Phaser.Input.Keyboard.JustDown(this.input.keyboard.createCursorKeys().space)){
+    update(time, delta) {
+        this.spamProtection += delta/1000
+        if(Phaser.Input.Keyboard.JustDown(this.input.keyboard.createCursorKeys().space) && this.spamProtection > 4){
             this.sound.stopAll()
             this.scene.start("playScene")
-        }
+        } 
     }
 }
