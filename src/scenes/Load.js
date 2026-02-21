@@ -15,6 +15,7 @@ class Load extends Phaser.Scene{
         this.load.image('endText', 'EndingText.png')
         this.load.image('mCredit', 'MichaelCredit.png')
         this.load.image('rCredit', 'RobertCredit.png')
+        this.load.image('timer', 'Timer.png')
        
         //Spritesheets
         this.load.spritesheet('gunShot', 'pistolV2.png', {frameWidth: 512, frameHeight: 288})

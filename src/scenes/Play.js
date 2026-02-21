@@ -16,6 +16,7 @@ class Play extends Phaser.Scene {
     }
     create(){
         this.score = 0;
+        
        //Asthetic Stuff
         this.backCity = this.add.tileSprite(0,0,0,0,'backCityTile').setOrigin(0,0)
         this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(6.5).setAlpha(0.45)
@@ -70,6 +71,8 @@ class Play extends Phaser.Scene {
             this.guns[i].setVisible(false)
             this.pistons.push(new Piston(this, 0, 0, 'rocketMan', 0))
         }
+        this.scoreTimer = this.add.image(this.game.config.width/2 - 170, this.game.config.height - 170, 'timer').setOrigin(0,0).setScale(0.80)
+        this.scoreText = this.add.text(this.game.config.width/2 - 25, this.game.config.height- 80, Math.floor(this.score * 100) / 100, {fontSize: '32px', fill: '#000000'}).setOrigin(0.5)
     }
 
     update(time,delta){
@@ -125,5 +128,12 @@ class Play extends Phaser.Scene {
         } 
            
         this.playerFSM.step()
+        //make the score shake just a little bit to add some life to the UI
+        this.shakeValue = Phaser.Math.Between(-2, 2)
+        this.scoreTimer.setY(this.game.config.height - 170 + this.shakeValue)
+        this.scoreText.setText(Math.floor(this.score * 100) / 100)
+        this.scoreText.setY(this.game.config.height - 80 + this.shakeValue)
+        
+
     }
 }
