@@ -8,7 +8,7 @@ class Load extends Phaser.Scene{
         this.load.path = './assets/'
         this.load.image('backCityTile', 'Background2.png')
         this.load.image('frontCityTile', 'Background.png')
-        //this.load.image('rocketMan','RocketMan.png')
+        this.load.image('rocketMan','RocketMan.png') //Orignal player art, I just can't get rid of him..
         this.load.image('roadTile', 'TilingGroundV1.png')
         this.load.image('menuBackground', 'MainMenuSplashArt.png')
         this.load.image('bodyPile', 'BodyPile.png')

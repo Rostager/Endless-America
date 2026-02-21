@@ -28,7 +28,7 @@ class Play extends Phaser.Scene {
         this.monsterAmerica.play('monsterAmericaAnim')
 
         //Set Up Player
-        this.player = new Player(this, 300, 500, 'rocketMan', 0).setScale(0.5,0.25)
+        this.player = new Player(this, 300, 500, 'i', 0).setScale(0.5,0.25)
 
         //Make invisble collision boxes for the play area and enable the player to stand on it 
         this.platform = this.add.rectangle(this.game.config.width/2, 560, this.game.config.width, 40, 0x000000, 0)
