@@ -9,15 +9,16 @@ class Play extends Phaser.Scene {
         this.currentGunIndex = 0
         this.readyToFire = true
         this.readyToSlam = true
-        this.fireDelay = 3000;
+        this.fireDelay = 4000;
         this.slamDelay = 5000;
         this.roadSpeed = 1;
 
     }
     create(){
+        this.score = 0;
        //Asthetic Stuff
         this.backCity = this.add.tileSprite(0,0,0,0,'backCityTile').setOrigin(0,0)
-        this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(6.5).setAlpha(0.75)
+        this.flagAnimationOverlay = this.add.sprite(this.game.config.width/2, this.game.config.height/2, 'flag').setOrigin(0,0).setScale(6.5).setAlpha(0.45)
         this.flagAnimationOverlay.play('flagAnim')
         this.frontCity = this.add.tileSprite(0,0,0,0,'frontCityTile').setOrigin(0,0)
         this.flagAnimationOverlay.setPosition(this.game.config.width/2 - this.flagAnimationOverlay.displayWidth/2, this.game.config.height/2 - this.flagAnimationOverlay.displayHeight/2)
@@ -26,7 +27,7 @@ class Play extends Phaser.Scene {
         this.monsterAmerica.play('monsterAmericaAnim')
 
         //Set Up Player
-        this.player = new Player(this, 0, 0, 'rocketMan', 0).setScale(0.5,0.25)
+        this.player = new Player(this, 300, 500, 'rocketMan', 0).setScale(0.5,0.25)
 
         //Make invisble collision boxes for the play area and enable the player to stand on it 
         this.platform = this.add.rectangle(this.game.config.width/2, 560, this.game.config.width, 40, 0x000000, 0)
@@ -72,6 +73,10 @@ class Play extends Phaser.Scene {
     }
 
     update(time,delta){
+        //Make the "score" just time survived 
+        this.score += delta/1000
+       
+        //console.log("Score: " + Math.floor(this.score)) 
         this.timeDelta = delta
         this.backCity.tilePositionX += this.roadSpeed * -0.25 * this.timeDelta;
         this.frontCity.tilePositionX += this.roadSpeed * -0.5 * this.timeDelta;
@@ -89,7 +94,7 @@ class Play extends Phaser.Scene {
                     //this.pistons[this.currentGunIndex].attack(Phaser.Math.Between(50, 700))
                     this.currentGunIndex = (this.currentGunIndex + 1) % this.guns.length;
                     this.fireDelay = Math.max(1500, this.fireDelay - 250); // Decrease delay but not below 0.5 seconds
-                    this.roadSpeed = Math.min(20, this.roadSpeed + 0.5); // Increase road speed but not above 20
+                    this.roadSpeed = Math.min(20, this.roadSpeed + 0.2); // Increase road speed but not above 20
                 }
             })
         }
@@ -116,7 +121,7 @@ class Play extends Phaser.Scene {
 
         if(this.playerFSM.state === 'death'){
             this.sound.stopAll()
-            this.scene.start("gameOverScene")
+            this.scene.start("gameOverScene", {score: Math.floor(this.score * 100) / 100})
         } 
            
         this.playerFSM.step()

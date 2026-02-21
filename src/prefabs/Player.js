@@ -3,7 +3,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, texture, frame)
         scene.add.existing(this)
         scene.physics.add.existing(this)
-
         this.body.setSize(this.width / 4, this.height - 20)
         this.body.setOffset(this.width / 2 - this.body.width / 2, 60)
         this.body.setCollideWorldBounds(true)
@@ -53,11 +52,11 @@ class RunState extends State {
         //LEFT RIGHT RUN
         if(scene.keys.a.isDown){
             //add left force
-            player.body.setVelocityX(-300 * player.movespeed)
+            player.body.setVelocityX(-300 * player.movespeed * scene.timeDelta)
         } else if(scene.keys.d.isDown){
-            player.body.setVelocityX(300 * player.movespeed)
+            player.body.setVelocityX(300 * player.movespeed * scene.timeDelta)
         }else{
-            player.body.setVelocityX(scene.roadSpeed * 20) //Feels like road is draggin pla
+            player.body.setVelocityX(scene.roadSpeed * 20 * scene.timeDelta) //Feels like road is draggin pla
         }
 
     }
@@ -106,10 +105,10 @@ class FlyState extends State {    //This is now gonna work as the "inAi state"
         //LEFT RIGHT JETPACK
         if(scene.keys.a.isDown){
             //add left force
-            player.body.velocity.x -= 100
+            player.body.velocity.x -= 100 * scene.timeDelta
            // player.body.setAccelerationX(-500)
         } else if(scene.keys.d.isDown){
-            player.body.velocity.x += 100
+            player.body.velocity.x += 100 * scene.timeDelta
           //  player.body.setAccelerationX(500)
         }else{
        // player.body.setAccelerationX(0) 
