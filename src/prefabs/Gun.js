@@ -32,7 +32,7 @@ class Gun extends Phaser.Physics.Arcade.Sprite {
     attack(yPosition){
         
         //Set the position for the animation position
-        this.setPosition(600, yPosition);
+        this.setPosition(750, yPosition);
         
         //Start as a faded red rectangle and get more red, at the peack red make invisible and activate gun hitbox (Deprocated the visual) 
         this.shotTelegraph = this.scene.add.rectangle(this.scene.game.config.width/2, yPosition + 110, this.scene.game.config.width, 20, 0xff0000, 1)

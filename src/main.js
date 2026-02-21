@@ -6,10 +6,10 @@
    Technical Tilt: 
 
 things to change
-- THe player should be running away from the monster (DONE_)
+- THe player should be running away from the monster (DONE)
 - The ground needs to go the other directon and when the player is on the ground should be going the other way (DONE)
 - Include in-game instructions
-- Add jump sound effect, and player death sound effect (bones crushing or something)
+- Add jump sound effect, and player death sound effect (bones crushing or something) (DONE)
 - Add time based score system
 - Add credit screen
 

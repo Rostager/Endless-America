@@ -10,6 +10,7 @@ class Load extends Phaser.Scene{
         this.load.image('frontCityTile', 'Background.png')
         this.load.image('rocketMan','RocketMan.png')
         this.load.image('roadTile', 'TilingGroundV1.png')
+        this.load.image('menuBackground', 'mainMenuSplashArt.png')
        
         //Spritesheets
         this.load.spritesheet('gunShot', 'pistolV2.png', {frameWidth: 512, frameHeight: 288})
@@ -24,6 +25,7 @@ class Load extends Phaser.Scene{
         this.load.audio('pistonSound', 'pistonSound.mp3')
         this.load.audio('whoosh', 'whoosh.wav')
         this.load.audio('playerDeath', 'Death.wav')
+        this.load.audio('menuSong', 'MenuMusic.wav')
         //Music by the amazingMichael Stager!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         this.load.audio('introTrack', 'EndlessAmericaPlayIntro.wav')
         this.load.audio('loopTrack', 'EndlessAmericaPlayLoop.wav')

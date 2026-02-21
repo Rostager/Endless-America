@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
         this.frontCity = this.add.tileSprite(0,0,0,0,'frontCityTile').setOrigin(0,0)
         this.flagAnimationOverlay.setPosition(this.game.config.width/2 - this.flagAnimationOverlay.displayWidth/2, this.game.config.height/2 - this.flagAnimationOverlay.displayHeight/2)
         this.road = this.add.tileSprite(0,100 , 0, 0, 'roadTile').setOrigin(0,0)
-        this.monsterAmerica = this.add.sprite(800, 100, 'monsterAmerica').setOrigin(0,0).setScale(1.5)
+        this.monsterAmerica = this.add.sprite(800, -50, 'monsterAmerica').setOrigin(0,0).setScale(2)
         this.monsterAmerica.play('monsterAmericaAnim')
 
         //Set Up Player
@@ -33,7 +33,7 @@ class Play extends Phaser.Scene {
         this.physics.add.existing(this.platform, true)
         this.physics.add.collider(this.player, this.platform)
 
-        this.walls = this.add.rectangle(850, this.game.config.height/2, 10, this.game.config.height, 0x000000, 0)
+        this.walls = this.add.rectangle(950, this.game.config.height/2, 10, this.game.config.height, 0x000000, 0)
         this.physics.add.existing(this.walls, true)
         this.physics.add.collider(this.player, this.walls)
         
@@ -65,7 +65,7 @@ class Play extends Phaser.Scene {
             
 
          for(let i = 0; i < 5; i++){
-            this.guns.push(new Gun(this, this.game.config.width -50, 300, 'gunShot', 0))
+            this.guns.push(new Gun(this, this.game.config.width + 50, 300, 'gunShot', 0))
             this.guns[i].setVisible(false)
             this.pistons.push(new Piston(this, 0, 0, 'rocketMan', 0))
         }
@@ -109,9 +109,10 @@ class Play extends Phaser.Scene {
             })
         }
 
-       // if(this.playerFSM.state !== 'death'){
-
-       // }
+        //if the player touches the right wall they die (they got caught by the monster)
+        if(this.player.x + this.player.width / 2 >= this.walls.x + 100){
+            this.playerFSM.transition('death')
+        }
 
         if(this.playerFSM.state === 'death'){
             this.sound.stopAll()
